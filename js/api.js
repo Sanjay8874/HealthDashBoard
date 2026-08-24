@@ -17,15 +17,70 @@ const Api = (function(){
     return json;
   }
 
-  // Exported functions (minimal set for v1)
+  // Exported functions
   return {
+    // Dashboard
     getDashboard(date){return call('getDashboard',{date})},
     getDailyData(date){return call('getDailyData',{date})},
-    addFood(data){return call('addFood',{data})},
+
+    // Food
+    addFood(data){return call('addFood',data)},
     updateFood(id,data){return call('updateFood',{id,data})},
     deleteFood(id){return call('deleteFood',{id})},
-    addWeight(data){return call('addWeight',{data})},
     getFoodLibrary(){return call('getFoodLibrary',{})},
+    addFoodLibraryItem(data){return call('addFoodLibraryItem',data)},
+    updateFoodLibraryItem(id,data){return call('updateFoodLibraryItem',{id,data})},
+    deleteFoodLibraryItem(id){return call('deleteFoodLibraryItem',{id})},
+
+    // Weight
+    addWeight(data){return call('addWeight',data)},
+    updateWeight(id,data){return call('updateWeight',{id,data})},
+    deleteWeight(id){return call('deleteWeight',{id})},
+
+    // Workout
+    addWorkout(data){return call('addWorkout',data)},
+    updateWorkout(id,data){return call('updateWorkout',{id,data})},
+    deleteWorkout(id){return call('deleteWorkout',{id})},
+
+    // Study
+    addStudy(data){return call('addStudy',data)},
+    updateStudy(id,data){return call('updateStudy',{id,data})},
+    deleteStudy(id){return call('deleteStudy',{id})},
+
+    // Water
+    addWater(data){return call('addWater',data)},
+    updateWater(id,data){return call('updateWater',{id,data})},
+
+    // Sleep
+    addSleep(data){return call('addSleep',data)},
+    updateSleep(id,data){return call('updateSleep',{id,data})},
+
+    // Habits
+    getHabits(){return call('getHabits',{})},
+    updateHabit(id,data){return call('updateHabit',{id,data})},
+
+    // Goals
+    getGoals(){return call('getGoals',{})},
+    addGoal(data){return call('addGoal',data)},
+    updateGoal(id,data){return call('updateGoal',{id,data})},
+    deleteGoal(id){return call('deleteGoal',{id})},
+
+    // Notes
+    addNote(data){return call('addNote',data)},
+    updateNote(id,data){return call('updateNote',{id,data})},
+    deleteNote(id){return call('deleteNote',{id})},
+
+    // Weight history
+    getWeightHistory(){return call('getWeightHistory',{})},
+
+    // Generic sheet read
+    getSheet(sheetName){return call('getSheet',{sheetName})},
+
+    // Analytics & export
+    getAnalytics(range){return call('getAnalytics',{range})},
+    exportCSV(sheet){return call('exportCSV',{sheet})},
+
+    // Settings
     getSettings(){return call('getSettings',{})}
   };
 })();
