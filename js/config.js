@@ -6,7 +6,7 @@ const APP_CONFIG = {
 
 // Only change API_URL to point to your deployed Google Apps Script Web App URL.
 const CONFIG = {
-  API_URL: "https://YOUR_APPS_SCRIPT_WEB_APP_URL_HERE", // e.g. https://script.google.com/macros/s/AKfycb.../exec
+  API_URL: "https://script.google.com/macros/s/AKfycbxJax83eDfGrz0Aj6z1uqF8wpNL7HibINwxUpnkIT5q0zspAbhNwDmM7ati6YZd9lA6/exec", // e.g. https://script.google.com/macros/s/AKfycb.../exec
   DATE_FORMAT: "YYYY-MM-DD"
 };
 
