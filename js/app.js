@@ -1,4 +1,4 @@
-// Simple SPA controller and UI glue for core flows. Keep UI code separated from API logic.
+﻿// Simple SPA controller and UI glue for core flows. Keep UI code separated from API logic.
 (function(){
   // DOM helpers
   const $ = sel => document.querySelector(sel);
@@ -19,7 +19,8 @@
     const pad=(n)=>n<10? '0'+n:n;
     return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
   }
-n  async function loadDashboard(){
+
+  async function loadDashboard(){
     const today = formatDateLocal(new Date());
     $('#today-date').textContent = new Date().toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'long'});
     try{
@@ -43,13 +44,16 @@
     if(s.appName) $('#app-name').textContent = s.appName;
     if(s.apiUrl) {CONFIG.API_URL = s.apiUrl; $('#setting-api-url').value = s.apiUrl}
     $('#setting-app-name').value = s.appName || APP_CONFIG.appName;
-n    // navigation
+
+    // navigation
     $$('.bottom-nav button').forEach(btn=>btn.addEventListener('click',e=>setActiveSection(btn.dataset.section)));
     $('#open-settings').addEventListener('click',()=>setActiveSection('settings'));
-n    // load dashboard on start
+
+    // load dashboard on start
     await loadDashboard();
-n    // food add handler is handled by js/food.js which manages add/update flows. Call window.refreshFoodList() after changes to reload the food list and dashboard.
-n    // weight save handler
+    // food add handler is handled by js/food.js which manages add/update flows. Call window.refreshFoodList() after changes to reload the food list and dashboard.
+
+    // weight save handler
     $('#save-weight').addEventListener('click', async (ev)=>{
       ev.preventDefault();
       const payload={date:$('#weight-date').value, weight:parseFloat($('#weight-value').value)};
@@ -57,7 +61,8 @@ n    // food add handler is handled by js/food.js which manages add/update flows
       try{ await Api.addWeight(payload); showToast('Weight saved'); await loadDashboard(); }
       catch(e){console.error(e); showToast('Failed to save weight');}
     });
-n    // settings save handler (local only)
+
+    // settings save handler (local only)
     $('#save-settings').addEventListener('click',()=>{
       const appName = $('#setting-app-name').value || APP_CONFIG.appName;
       const apiUrl = $('#setting-api-url').value || CONFIG.API_URL;
