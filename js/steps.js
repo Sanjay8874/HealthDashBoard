@@ -1,0 +1,9 @@
+// Steps UI: add/edit steps, show history and averages
+(function(){
+  const $=s=>document.querySelector(s);
+  const sheet='Steps';
+  function today(){ return (new Date()).toISOString().slice(0,10); }
+  async function loadSteps(){ $('#steps-list').innerHTML='Loading...'; try{ const res = await Api.getSheet(sheet); const rows = res.data||[]; rows.sort((a,b)=> new Date(b.Date)-new Date(a.Date)); if(!rows.length){ $('#steps-list').innerHTML='<div class="card">No step records</div>'; return; } let weeklySum=0, monthlySum=0; const now=new Date(); const weekAgo=new Date(); weekAgo.setDate(now.getDate()-6); const monthAgo=new Date(); monthAgo.setMonth(now.getMonth()-1); rows.forEach(r=>{ const d=new Date(String(r.Date)); const v=Number(r.Steps)||0; if(d>=weekAgo) weeklySum+=v; if(d>=monthAgo) monthlySum+=v; }); const container=document.createElement('div'); rows.slice(0,14).forEach(r=>{ const el=document.createElement('div'); el.className='card'; el.innerHTML=`<div style='display:flex;justify-content:space-between'><div>${r.Date}</div><div>${r.Steps}</div></div>`; container.appendChild(el); }); $('#steps-list').innerHTML=''; $('#steps-list').appendChild(container); $('#steps-summary') && ($('#steps-summary').textContent=`Week: ${Math.round(weeklySum/7)} avg • Month: ${Math.round(monthlySum/30)} avg`); }catch(e){console.error(e); $('#steps-list').innerHTML='Failed to load'; } }
+  async function onSave(ev){ ev.preventDefault(); const payload={ Date: $('#steps-date').value||today(), Steps: Number($('#steps-value').value)||0 }; try{ await Api.addRow ? await Api.addRow('Steps',payload) : await Api.addGoal(payload); showToast('Saved'); $('#steps-value').value=''; await loadSteps(); await window.loadDashboard && window.loadDashboard(); }catch(e){console.error(e); showToast('Failed');} }
+  document.addEventListener('DOMContentLoaded', ()=>{ document.getElementById('steps-form').addEventListener('submit', onSave); loadSteps(); });
+})();

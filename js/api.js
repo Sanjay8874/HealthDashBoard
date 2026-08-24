@@ -73,6 +73,9 @@ const Api = (function(){
     // Weight history
     getWeightHistory(){return call('getWeightHistory',{})},
 
+    // Generic sheet read
+    getSheet(sheetName){return call('getSheet',{sheetName})},
+
     // Analytics & export
     getAnalytics(range){return call('getAnalytics',{range})},
     exportCSV(sheet){return call('exportCSV',{sheet})},

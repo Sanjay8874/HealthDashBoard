@@ -1,0 +1,11 @@
+// Notes UI: add/edit/delete notes for dates
+(function(){
+  const $=s=>document.querySelector(s);
+  const sheet='Notes';
+  function today(){ return (new Date()).toISOString().slice(0,10); }
+  async function loadNotes(){ $('#notes-list').innerHTML='Loading...'; try{ const res = await Api.getSheet(sheet); const rows = res.data||[]; rows.sort((a,b)=> new Date(b.Date)-new Date(a.Date)); if(!rows.length){ $('#notes-list').innerHTML='<div class="card">No notes</div>'; return; } const container=document.createElement('div'); rows.forEach(r=>{ const el=document.createElement('div'); el.className='card'; el.innerHTML=`<div style='display:flex;justify-content:space-between'><div><strong>${r.Date}</strong><div style='color:var(--muted)'>${r.Note}</div></div><div><button class='btn small edit-n' data-id='${r.ID}'>Edit</button> <button class='btn small del-n' data-id='${r.ID}'>Delete</button></div></div>`; container.appendChild(el); }); $('#notes-list').innerHTML=''; $('#notes-list').appendChild(container); Array.from(document.querySelectorAll('.edit-n')).forEach(b=>b.addEventListener('click', onEdit)); Array.from(document.querySelectorAll('.del-n')).forEach(b=>b.addEventListener('click', onDelete)); }catch(e){console.error(e); $('#notes-list').innerHTML='Failed to load';} }
+  async function onSave(ev){ ev.preventDefault(); const payload={ Date: $('#note-date').value||today(), Note: $('#note-text').value||'' }; try{ await Api.addNote(payload); showToast('Saved'); $('#note-text').value=''; await loadNotes(); }catch(e){console.error(e); showToast('Failed');} }
+  async function onEdit(ev){ const id=ev.currentTarget.dataset.id; const res=await Api.getSheet(sheet); const item=(res.data||[]).find(x=>String(x.ID)===String(id)); if(!item) return; $('#note-date').value=item.Date; $('#note-text').value=item.Note||''; }
+  async function onDelete(ev){ if(!confirm('Delete note?')) return; const id=ev.currentTarget.dataset.id; try{ await Api.deleteNote(id); showToast('Deleted'); await loadNotes(); }catch(e){console.error(e); showToast('Failed');} }
+  document.addEventListener('DOMContentLoaded', ()=>{ document.getElementById('note-form').addEventListener('submit', onSave); loadNotes(); });
+})();

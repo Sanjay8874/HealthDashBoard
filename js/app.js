@@ -69,5 +69,8 @@ n    // food add handler is handled by js/food.js which manages add/update flows
   // expose some helpers for other modules
   window.loadDashboard = loadDashboard;
   window.showToast = showToast;
+  // expose some helpers for other modules
+  window.loadDashboard = loadDashboard;
+  window.showToast = showToast;
   document.addEventListener('DOMContentLoaded',init);
 })();

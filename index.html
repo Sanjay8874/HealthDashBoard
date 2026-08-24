@@ -66,6 +66,120 @@
       </div>
     </section>
 
+    <section id="workout" class="page">
+      <h2>Workout</h2>
+      <form id="workout-form" class="card inline-form">
+        <input type="hidden" id="workout-id">
+        <input id="workout-date" type="date">
+        <select id="workout-type">
+          <option>Gym</option><option>Cardio</option><option>Running</option><option>Walking</option><option>Cycling</option><option>Sports</option><option>Rest</option><option>Other</option>
+        </select>
+        <input id="workout-duration" type="number" min="0" placeholder="minutes">
+        <select id="workout-status"><option>Planned</option><option>Completed</option></select>
+        <textarea id="workout-notes" placeholder="Notes" rows="2"></textarea>
+        <div style="width:100%;display:flex;gap:8px"><button id="add-workout" class="btn">Add</button><button id="reset-workout" class="btn">Reset</button></div>
+      </form>
+      <div id="workout-list"></div>
+    </section>
+
+    <section id="study" class="page">
+      <h2>Study</h2>
+      <form id="study-form" class="card inline-form">
+        <input type="hidden" id="study-id">
+        <input id="study-date" type="date">
+        <input id="study-subject" placeholder="Subject">
+        <input id="study-minutes" type="number" min="0" placeholder="Minutes">
+        <input id="study-topic" placeholder="Topic">
+        <textarea id="study-notes" placeholder="Notes" rows="2"></textarea>
+        <div style="width:100%;display:flex;gap:8px"><button id="add-study" class="btn">Add</button><button id="reset-study" class="btn">Reset</button></div>
+      </form>
+      <div id="study-summary" class="card">Weekly: — • Monthly: —</div>
+      <div id="study-list"></div>
+    </section>
+
+    <section id="water" class="page">
+      <h2>Water</h2>
+      <div class="card inline-form">
+        <div style="display:flex;gap:8px">
+          <button id="water-add-250" class="btn">+250 ml</button>
+          <button id="water-add-500" class="btn">+500 ml</button>
+          <button id="water-add-1000" class="btn">+1 L</button>
+        </div>
+        <form id="water-form" style="margin-top:8px">
+          <input id="water-date" type="date">
+          <input id="water-ml" type="number" min="0" placeholder="ml">
+          <button id="water-save" class="btn">Save</button>
+        </form>
+      </div>
+      <div id="water-list"></div>
+    </section>
+
+    <section id="habits" class="page">
+      <h2>Habits</h2>
+      <form id="habit-form" class="card inline-form">
+        <input id="habit-name" placeholder="Habit name">
+        <input id="habit-target" type="number" min="0" placeholder="Target frequency">
+        <label><input id="habit-active" type="checkbox" checked> Active</label>
+        <button id="add-habit" class="btn">Add Habit</button>
+      </form>
+      <div id="habit-list"></div>
+    </section>
+
+    <section id="goals" class="page">
+      <h2>Goals</h2>
+      <form id="goal-form" class="card inline-form">
+        <input type="hidden" id="goal-id">
+        <input id="goal-name" placeholder="Goal name">
+        <input id="goal-target" placeholder="Target">
+        <input id="goal-unit" placeholder="Unit">
+        <label><input id="goal-active" type="checkbox" checked> Active</label>
+        <button id="add-goal" class="btn">Save Goal</button>
+      </form>
+      <div id="goals-list"></div>
+    </section>
+
+    <section id="steps" class="page">
+      <h2>Steps</h2>
+      <form id="steps-form" class="card inline-form">
+        <input id="steps-date" type="date">
+        <input id="steps-value" type="number" min="0" placeholder="Steps">
+        <button id="save-steps" class="btn">Save</button>
+      </form>
+      <div id="steps-list"></div>
+    </section>
+
+    <section id="sleep" class="page">
+      <h2>Sleep</h2>
+      <form id="sleep-form" class="card inline-form">
+        <input id="sleep-date" type="date">
+        <input id="sleep-minutes" type="number" min="0" placeholder="Minutes asleep">
+        <select id="sleep-quality"><option>Good</option><option>Average</option><option>Poor</option></select>
+        <textarea id="sleep-notes" placeholder="Notes" rows="2"></textarea>
+        <button id="save-sleep" class="btn">Save</button>
+      </form>
+      <div id="sleep-list"></div>
+    </section>
+
+    <section id="notes" class="page">
+      <h2>Notes</h2>
+      <form id="note-form" class="card inline-form">
+        <input id="note-date" type="date">
+        <textarea id="note-text" placeholder="Note" rows="3"></textarea>
+        <button id="save-note" class="btn">Save</button>
+      </form>
+      <div id="notes-list"></div>
+    </section>
+
+    <section id="calendar" class="page">
+      <h2>Calendar</h2>
+      <div id="calendar-wrap" class="card"></div>
+    </section>
+
+    <section id="daily" class="page">
+      <h2 id="daily-title">Daily Detail</h2>
+      <div id="daily-detail"></div>
+    </section>
+
     <section id="settings" class="page">
       <h2>Settings</h2>
       <div class="card">
@@ -82,6 +196,7 @@
     <button data-section="dashboard">🏠</button>
     <button data-section="food">🍗</button>
     <button data-section="weight">⚖️</button>
+    <button data-section="workout">🏋️</button>
     <button data-section="analytics">📊</button>
     <button data-section="settings">⚙️</button>
   </nav>

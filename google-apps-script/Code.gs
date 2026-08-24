@@ -63,6 +63,7 @@ function doPost(e){
 
       case 'getSettings': return jsonResponse(getSettings());
       case 'getWeightHistory': return jsonResponse({ok:true, data:getSheetRowsObj(CONFIG.SHEETS.WEIGHT)});
+      case 'getSheet': return jsonResponse({ok:true, data:getSheetRowsObj(data.sheetName)});
 
       default:
         return jsonResponse({error: 'Unknown action: '+action});
