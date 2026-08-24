@@ -73,6 +73,29 @@ function doPost(e){
   }
 }
 
+function doGet(e){
+  // Provide a JSONP-friendly GET endpoint so local frontend (or browsers) can test without CORS.
+  // Usage: https://.../exec?action=getSettings&callback=yourCallback
+  try{
+    var action = (e && e.parameter && e.parameter.action) || '';
+    var dataStr = (e && e.parameter && e.parameter.data) || '{}';
+    var data = {};
+    try{ data = JSON.parse(dataStr); }catch(err){ data = {} }
+    var fakeE = { postData: { contents: JSON.stringify({ action: action, data: data }) } };
+    var resp = doPost(fakeE);
+
+    var callback = (e && e.parameter && e.parameter.callback);
+    if(callback){
+      // Wrap JSON in callback for JSONP
+      var json = resp.getContent();
+      return ContentService.createTextOutput(callback + '(' + json + ')').setMimeType(ContentService.MimeType.JAVASCRIPT);
+    }
+    return resp;
+  }catch(err){
+    return ContentService.createTextOutput(JSON.stringify({error: err.message})).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
 function jsonResponse(obj){
   return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON);
 }
