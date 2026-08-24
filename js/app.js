@@ -48,20 +48,7 @@
     $('#open-settings').addEventListener('click',()=>setActiveSection('settings'));
 n    // load dashboard on start
     await loadDashboard();
-n    // food add handler
-    $('#add-food').addEventListener('click',async (ev)=>{
-      ev.preventDefault();
-      const payload={
-        date:formatDateLocal(new Date()),
-        meal:$('#food-meal').value,
-        food:$('#food-name').value,
-        quantity:parseFloat($('#food-qty').value)||0,
-        unit:$('#food-unit').value,
-        calories:parseFloat($('#food-cals').value)||0
-      };
-      try{ await Api.addFood(payload); showToast('Food saved'); $('#food-name').value=''; $('#food-qty').value=''; $('#food-cals').value=''; await loadDashboard(); }
-      catch(e){console.error(e); showToast('Failed to save');}
-    });
+n    // food add handler is handled by js/food.js which manages add/update flows. Call window.refreshFoodList() after changes to reload the food list and dashboard.
 n    // weight save handler
     $('#save-weight').addEventListener('click', async (ev)=>{
       ev.preventDefault();
@@ -79,5 +66,8 @@
     });
   }
 
+  // expose some helpers for other modules
+  window.loadDashboard = loadDashboard;
+  window.showToast = showToast;
   document.addEventListener('DOMContentLoaded',init);
 })();
