@@ -62,6 +62,7 @@ function doPost(e){
       case 'exportCSV': return exportCSV(data.sheet || CONFIG.SHEETS.FOOD);
 
       case 'getSettings': return jsonResponse(getSettings());
+      case 'getWeightHistory': return jsonResponse({ok:true, data:getSheetRowsObj(CONFIG.SHEETS.WEIGHT)});
 
       default:
         return jsonResponse({error: 'Unknown action: '+action});

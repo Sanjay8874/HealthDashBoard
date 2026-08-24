@@ -70,6 +70,9 @@ const Api = (function(){
     updateNote(id,data){return call('updateNote',{id,data})},
     deleteNote(id){return call('deleteNote',{id})},
 
+    // Weight history
+    getWeightHistory(){return call('getWeightHistory',{})},
+
     // Analytics & export
     getAnalytics(range){return call('getAnalytics',{range})},
     exportCSV(sheet){return call('exportCSV',{sheet})},
