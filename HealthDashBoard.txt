@@ -1,0 +1,11 @@
+
+Google Sheet-
+https://docs.google.com/spreadsheets/d/1CbiMpZ5sx_W9XdBWo5i1fMo2mPlDLhQ18OOB0-cqaag/edit?gid=0#gid=0
+
+ID- 1CbiMpZ5sx_W9XdBWo5i1fMo2mPlDLhQ18OOB0-cqaag
+
+Deployment ID-
+AKfycbxJax83eDfGrz0Aj6z1uqF8wpNL7HibINwxUpnkIT5q0zspAbhNwDmM7ati6YZd9lA6
+
+URL-
+https://script.google.com/macros/s/AKfycbxJax83eDfGrz0Aj6z1uqF8wpNL7HibINwxUpnkIT5q0zspAbhNwDmM7ati6YZd9lA6/exec
